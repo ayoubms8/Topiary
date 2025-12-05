@@ -8,6 +8,7 @@ from sklearn.multioutput import MultiOutputRegressor
 from openai import OpenAI
 import uvicorn
 import os
+from twilio.rest import Client
 import time
 
 app = FastAPI(title="EnerOptim API", description="Industrial Digital Twin Backend")
@@ -156,6 +157,15 @@ class OptimizationRequest(BaseModel):
 def read_root():
     return {"status": "online", "model_loaded": sim.model is not None}
 
+
+# Hardcoded values for demo purposes
+TWILIO_SID = os.getenv("TWILIO_SID")
+TWILIO_TOKEN = os.getenv("TWILIO_TOKEN")
+TWILIO_TO_NUMBER = os.getenv("TWILIO_TO_NUMBER")
+TWILIO_FROM_NUMBER = os.getenv("TWILIO_FROM_NUMBER")
+
+twilio_client = Client(TWILIO_SID, TWILIO_TOKEN)
+
 @app.post("/simulate")
 def run_simulation(req: SimulationRequest):
     if sim.model is None:
@@ -165,6 +175,21 @@ def run_simulation(req: SimulationRequest):
     if result is None:
         raise HTTPException(status_code=500, detail="Prediction failed")
     
+    # Check for Critical Alert: MP Pressure < 7.5 bar
+    if result['MP_Pressure'] < 7.5:
+        try:
+            if TWILIO_TO_NUMBER:
+                message = twilio_client.messages.create(
+                    body=f"CRITICAL ALERT: MP Pressure Low ({result['MP_Pressure']:.2f} bar). Check GTA Load immediately.",
+                    from_=TWILIO_FROM_NUMBER,
+                    to=TWILIO_TO_NUMBER
+                )
+                print(f"SMS Alert Sent: {message.sid}")
+            else:
+                print("Twilio SMS Skipped: TWILIO_TO_NUMBER env var not set.")
+        except Exception as e:
+            print(f"Failed to send SMS: {e}")
+
     est_steam = req.sulfur_in * sim.steam_ratio
     total_adm = req.adm1 + req.adm2 + req.adm3
     vap_dispo = est_steam - total_adm - result['HP_TR']

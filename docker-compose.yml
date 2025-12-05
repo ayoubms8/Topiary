@@ -12,6 +12,10 @@ services:
     network_mode: "host"
     environment:
       - PYTHONUNBUFFERED=1
+      - TWILIO_SID=AC07196ed31a22b595ac31c1b48a215363
+      - TWILIO_TOKEN=0adadda8a8081093df416b5cfd1b30bf
+      - TWILIO_FROM_NUMBER=+14059251104
+      - TWILIO_TO_NUMBER=+212762045828
 
   frontend:
     build:

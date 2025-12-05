@@ -16,3 +16,6 @@
 
 4.  **Backend API**
     *   The backend API is available at: http://localhost:8000/docs
+
+# Twilio Configuration
+# To enable SMS alerts, you must set the TWILIO_TO_NUMBER environment variable in the docker-compose.yml file.

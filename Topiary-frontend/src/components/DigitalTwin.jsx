@@ -44,7 +44,7 @@ const TurbineCard = ({ name, type, adm, pwr, sout }) => {
 
                 {type !== 'Cond' && (
                     <div className="bg-black/40 rounded-lg p-1 text-center border border-white/10 mx-2 mb-1 backdrop-blur-sm">
-                        <div className="text-[9px] text-text-muted">KPI</div>
+                        <div className="text-[9px] text-text-muted">Consumption </div>
                         <div className="font-mono text-base font-bold text-orange-400">{cons}</div>
                     </div>
                 )}
@@ -97,7 +97,7 @@ export default function DigitalTwin({ data, inputs }) {
 
                             <div className="w-32 h-24 bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-600 rounded-2xl flex flex-col items-center justify-center p-2 shadow-lg">
                                 <Database size={24} className="text-yellow-500 mb-2" />
-                                <span className="font-bold text-yellow-500 text-center leading-tight">SULFURIC ACID</span>
+                                <span className="font-bold text-yellow-500 text-center leading-tight">Sulfur Flow</span>
                                 <span className="font-mono text-xs text-text-muted mt-1">{inputs.sulfur_in.toFixed(0)} T/h</span>
                             </div>
 

@@ -21,7 +21,7 @@ export default function Sidebar({ inputs, setInputs, handleOptimize, optimizing,
                 <div className="space-y-4">
                     <div className="flex justify-between items-end">
                         <label className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 block">
-                            Sulfuric Acid Cadence (T/h)
+                            Sulfur Flow (T/h)
                         </label>
                         <span className="font-mono text-xl font-bold text-primary">{inputs.sulfur_in} <span className="text-sm text-text-muted">T/h</span></span>
                     </div>
