@@ -1,0 +1,27 @@
+
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend.py:/app/backend.py
+      - ./Data_Final.csv:/app/Data_Final.csv
+    command: uvicorn backend:app --host 0.0.0.0 --port 8000 --reload
+    environment:
+      - PYTHONUNBUFFERED=1
+
+  frontend:
+    build:
+      context: ./Topiary-frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./Topiary-frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend

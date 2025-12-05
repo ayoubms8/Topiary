@@ -1,0 +1,18 @@
+# Topiary Digital Twin - Setup Instructions
+
+1.  **AI Model Serving**
+    *   Download and install [LM Studio](https://lmstudio.ai/).
+    *   Load the `qwen2.5` model (or compatible).
+    *   Start the Local Server in LM Studio.
+    *   Ensure it is listening on port `1234` (default) and Web Serving is enabled.
+
+2.  **Run the Application**
+    *   Open a terminal in this directory.
+    *   Run the following command:
+        docker-compose up --build
+
+3.  **Access the Dashboard**
+    *   Open your browser and navigate to: http://localhost:5173
+
+4.  **Backend API**
+    *   The backend API is available at: http://localhost:8000/docs

@@ -26,17 +26,17 @@ const TurbineCard = ({ name, type, adm, pwr, sout }) => {
                     {type !== 'Cond' && (
                         <div className="flex justify-between">
                             <span className="text-[9px] text-text-muted">IN (HP)</span>
-                            <span className="font-mono text-secondary text-sm font-bold">{adm}</span>
+                            <span className="font-mono text-secondary text-lg font-bold">{adm}</span>
                         </div>
                     )}
                     <div className="flex justify-between mt-1">
                         <span className="text-[9px] text-text-muted">OUT (EP)</span>
-                        <span className="font-mono text-primary text-sm font-bold">{(pwr || 0).toFixed(1)}</span>
+                        <span className="font-mono text-primary text-lg font-bold">{(pwr || 0).toFixed(1)}</span>
                     </div>
                     {type === 'Ext' && (
                         <div className="flex justify-between mt-1">
                             <span className="text-[9px] text-text-muted">OUT (MP)</span>
-                            <span className="font-mono text-warning text-sm font-bold">{(sout || 0).toFixed(1)}</span>
+                            <span className="font-mono text-warning text-lg font-bold">{(sout || 0).toFixed(1)}</span>
                         </div>
                     )}
                 </div>
@@ -44,8 +44,8 @@ const TurbineCard = ({ name, type, adm, pwr, sout }) => {
 
                 {type !== 'Cond' && (
                     <div className="bg-black/40 rounded-lg p-1 text-center border border-white/10 mx-2 mb-1 backdrop-blur-sm">
-                        <div className="text-[9px] text-text-muted">CONSUMPTION</div>
-                        <div className="font-mono text-xs text-orange-400">{cons}</div>
+                        <div className="text-[9px] text-text-muted">KPI</div>
+                        <div className="font-mono text-base font-bold text-orange-400">{cons}</div>
                     </div>
                 )}
             </div>
@@ -143,7 +143,7 @@ export default function DigitalTwin({ data, inputs }) {
                                     <Wind className="text-gray-500 animate-spin-slow" size={32} />
                                     <div className="text-right w-full">
                                         <div className="text-[10px] text-text-muted">HP IN</div>
-                                        <div className="font-mono text-warning text-xs">{data.HP_TR.toFixed(0)}</div>
+                                        <div className="font-mono text-warning text-lg font-bold">{data.HP_TR.toFixed(0)}</div>
                                     </div>
                                 </div>
 
