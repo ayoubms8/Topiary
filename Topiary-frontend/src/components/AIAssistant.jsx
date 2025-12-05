@@ -62,7 +62,7 @@ export default function AIAssistant({
                 {chatHistory.map((msg, i) => (
                     <div key={i}
                         className={`max-w-[85%] p-3 rounded-2xl text-sm shadow-md ${msg.role === 'user'
-                            ? 'bg-gradient-to-br from-primary to-green-600 text-black font-medium rounded-br-none ml-auto'
+                            ? 'bg-gradient-to-br from-primary to-green-600 text-white font-medium rounded-br-none ml-auto'
                             : 'bg-white/10 text-gray-200 rounded-bl-none border border-white/5 mr-auto'
                             }`}>
                         {msg.content.split('\n').map((line, l) => <p key={l}>{line}</p>)}

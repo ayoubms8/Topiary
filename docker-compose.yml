@@ -5,12 +5,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.backend
-    ports:
-      - "8000:8000"
     volumes:
       - ./backend.py:/app/backend.py
       - ./Data_Final.csv:/app/Data_Final.csv
     command: uvicorn backend:app --host 0.0.0.0 --port 8000 --reload
+    network_mode: "host"
     environment:
       - PYTHONUNBUFFERED=1
 

@@ -20,7 +20,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-client = OpenAI(base_url="http://localhost:1234/v1", api_key="lm-studio")
+client = OpenAI(base_url=os.getenv("LLM_BASE_URL", "http://localhost:1234/v1"), api_key="lm-studio")
 
 # 1. DIGITAL TWIN LOGIC
 class GlobalPlantSimulator:
@@ -260,6 +260,7 @@ def chat_with_qwen(req: ChatRequest):
         )
         return {"response": res.choices[0].message.content}
     except Exception as e:
+        print(f"DEBUG: LLM Error in chat: {e}")
         raise HTTPException(status_code=503, detail=f"AI Service Error: {str(e)}")
 
 @app.get("/config")
